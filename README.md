@@ -65,21 +65,28 @@ Once an appointment is inputed to the schedule and saved, it will still remain w
 
 
 ### Work Day Schedular.
-
+![Screenshot 2023-06-24 at 2 15 02 pm](https://github.com/jarrodbb/Work-Day-Scheduler/assets/132813348/884bc7e7-f371-4b31-bc8f-4c6e43e26e28)
 
 #### Current Date formatted and displayed
+![Screenshot 2023-06-24 at 2 15 17 pm](https://github.com/jarrodbb/Work-Day-Scheduler/assets/132813348/e349c860-302b-471e-bdcc-8a3431add3b5)
 
 #### Background colors update based on current time. As of writing this the current time is 2:17pm. Therefore the background color is Red
+![Screenshot 2023-06-24 at 2 16 36 pm](https://github.com/jarrodbb/Work-Day-Scheduler/assets/132813348/ae80e968-2df2-4c92-9eb7-beacfce964b3)
 
-#### Meeting/Event is able to be inputed for each hour
+#### An appointment is able to be inputed for each hour
+![Screenshot 2023-06-24 at 2 18 28 pm](https://github.com/jarrodbb/Work-Day-Scheduler/assets/132813348/f03a3c15-c98a-4b8d-85d4-349dd5bbddc2)
 
 #### Clicking the save button sends the input to local storage
+![Screenshot 2023-06-24 at 2 19 11 pm](https://github.com/jarrodbb/Work-Day-Scheduler/assets/132813348/2106cf02-cf96-40e0-b1a9-d8559f26b2de)
 
 #### Pop up after saving each appointment  
+![Screenshot 2023-06-24 at 2 22 53 pm](https://github.com/jarrodbb/Work-Day-Scheduler/assets/132813348/45d63ca9-3b93-48ae-a871-3ab13d691b80)
 
 #### Appointment added to local storage with "hour-15" Key
+![Screenshot 2023-06-24 at 2 23 40 pm](https://github.com/jarrodbb/Work-Day-Scheduler/assets/132813348/92a8ebea-407d-4bbe-b4fd-df13488f5e7a)
 
 #### Refreshing the page renders the appointment in the correct location 
+![Screenshot 2023-06-24 at 2 25 19 pm](https://github.com/jarrodbb/Work-Day-Scheduler/assets/132813348/c6c57050-8b82-4b04-96ec-b25c33aaa276)
 
 
 ## Credits
