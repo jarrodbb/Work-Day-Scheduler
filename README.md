@@ -28,7 +28,7 @@ Click the link to access the Quiz
 
 [Github](https://github.com/jarrodbb/Work-Day-Scheduler)
 
-Source code. The code index.html is the working code file
+Source code. 
 [index.html](https://github.com/jarrodbb/Work-Day-Scheduler/blob/main/index.html)
 
 JavaScript code.
