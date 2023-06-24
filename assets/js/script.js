@@ -1,126 +1,90 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-// add function to display time in hearder. Day, Month day(st/th)
-
+// variable created to link HTML
 var timeDisplayEl = $('#currentDay');
 var scheduleDisplayEL = $('#scheduleDisplay')
-var hourNine = $('#hour-9')
-var saveBtn = $('#btn') //might not be required
-var eventDescriptionEl = $('eventDescription')
-
+var locationOfPopUpEl = $('#popUpDisplayDiv')
 var timeBlockEL = $('.time-block');
 
+//the hour of the current time is created as a variable to be used when assigning the correct class
 var currentTime = dayjs().format('H')
 
-// var scheduleBodySelector = []
-// var scheduleInput = []
-// var input = ""
-
-// var keyInput = ""
-
-// var hourId = []
-// var splitId = []
-
-// var iDInt = []
-
-//Add pop up and format - use icon tick add +++ two element so you can add formatting to the tick 
-// one elment = inner html = added to local storage 
-// 2nd element = inner html with icon - format 
-
+//for loop created to assign past, present or future classes to each time
 for (var i=0; i< timeBlockEL.length; i++ ) {
-  console.log($(timeBlockEL)[i].id)
-  $(timeBlockEL[i]).removeClass('present', 'past', 'future')
-  var hourId = $(timeBlockEL)[i].id
-  console.log(hourId + "hour ID")
 
-  var splitId = hourId.split("-")
-  var iDInt = parseInt(splitId[1])
-  console.log("testy" + iDInt)
+  //classes first removed to ensure the correct class is assigned 
+  $(timeBlockEL[i]).removeClass('present', 'past', 'future')
   
+   //jQuery to select the id
+  var hourId = $(timeBlockEL)[i].id
+  // id is then split as only the hr is required
+  var splitId = hourId.split("-")
+  //parseInt is used to create an interger to compare with
+  var iDInt = parseInt(splitId[1])
+  //if statement is run to assign the correct class based on the time displayed 
   if (iDInt == currentTime) {
-    console.log("present")
     $(timeBlockEL[i]).addClass('present')
   } else if (iDInt < currentTime) {
-    console.log("past")
     $(timeBlockEL[i]).addClass('past')
   } else {
-    console.log("future")
     $(timeBlockEL[i]).addClass('future')
   }
 
+  //for loop also grabs any saved event in the local storage that mateches the id and appends it the the relevant hour
   var meeting = JSON.parse(localStorage.getItem(hourId))
-      console.log(hourId)
       timeBlockEL[i].children[1].innerText = meeting
   
 }
 
-console.log(iDInt + "testing ID int")
-console.log(scheduleDisplayEL)
-
+// function using dayjs to display the current date in the header 
 function displayTime () {
   var today = dayjs().format('dddd, MMMM D, YYYY')
-  console.log(today)
   timeDisplayEl.text(today);
 }
 
-
+//displayTime function is run
 displayTime()
 
-// send text input to local storage
+//function to handle the click on the save button
 function saveButton () {
-  
+  //jQUery to select the closet div
   scheduleBodySelector = $(this).closest('div');
+  //DOM traversal used with select the right child and sibling
   scheduleInput = scheduleBodySelector.children().eq(1)
+  //input saved and trimmed 
   input = scheduleInput.val().trim()
-  console.log(input + "test input")
-
+  //id selected
   keyInput = scheduleBodySelector.attr('id')
-  console.log(keyInput + "test keyinput")
-
-  console.log(input)
 
   // save input to local storage with key = hour-x
   function saveHourlyEvent() {
+    //save to local storage
     localStorage.setItem(keyInput, JSON.stringify(input));
+    
+   //timeout function to display pop up
+    setTimeout( function(){
+      //jQuery used to create element 
+      //elements split to be able to assign the correct styling
+      var popUpTextEl = $('<h6>Appointment Added to </h6> ')
+      var popUpLocalStorageTextEl =$('<h6 class="save-to-storage">local storage </h6> <i class="fas fa-check comfirm-tick"></i>')
+      // variables combined 
+      var popUpEl = $.merge(popUpTextEl, popUpLocalStorageTextEl).addClass('.pop-up')
+      //popUpEL appende to locationOfPopUpEl
+      locationOfPopUpEl.append(popUpEl);  
+    }, 100);
+      //function to run after 1sec to empty what was displayed. this ensure it is only rendered when the save button is selected
+      setTimeout( function(){    
+      locationOfPopUpEl.empty()
+    }, 1000);
+  
   }
   
+  //runs the function to save to local storage 
   saveHourlyEvent()
 
 }
 
-//event listener on Save button
+//event listener on Save button. Event delegation is used. Parent selected and then the button is selected. 
+//Ensures only the .btn triggers the click
 scheduleDisplayEL.on('click', '.btn', saveButton);
 
 
-console.log(currentTime)
 
-// function allStorage() {
-
-//   var listOfKeysLocalStorage = Object.keys(localStorage)
-//       // keys = Object.keys(localStorage),
-//       // i = 0, key;
-
-//   // for (; key = keys[i]; i++) {
-//   //   listOfKeysLocalStorage.push( key );
-//   // }
-//   // console.log(listOfKeysLocalStorage)
-  
-//   for (var i=0; i< timeBlockEL.length; i++ ) {
-//     hourKey = $(timeBlockEL)[i].id
-//     console.log(hourKey)
-  
-//     if (listOfKeysLocalStorage.includes(hourKey)) {
-//       var meeting = JSON.parse(localStorage.getItem(hourKey))
-//       console.log(hourKey)
-//       timeBlockEL[i].children[1].innerText = meeting
-
-//       console.log(timeBlockEL.children().eq())
-//     } 
-   
-//   }
-// }
-
-// allStorage();
-
-// pop up - render when saved - button 
